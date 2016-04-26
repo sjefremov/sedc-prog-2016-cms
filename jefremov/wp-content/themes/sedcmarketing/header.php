@@ -22,7 +22,17 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+	<?php if ( is_active_sidebar( 'sidebar-top' )  ) : ?>
+		<div id="secondary" class="sidebar widget-area" role="complementary">
+			<?php dynamic_sidebar( 'sidebar-top' ); ?>
+		</div><!-- .sidebar .widget-area -->
+	<?php endif; ?>
+
 <div id="page" class="site">
+
+
+
 	<div class="site-inner">
 		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'twentysixteen' ); ?></a>
 
@@ -43,16 +53,16 @@
 					<?php endif; ?>
 				</div><!-- .site-branding -->
 
-				<?php if ( has_nav_menu( 'primary' ) || has_nav_menu( 'social' ) ) : ?>
+				<?php if ( has_nav_menu( 'top_menu' ) || has_nav_menu( 'social' ) ) : ?>
 					<button id="menu-toggle" class="menu-toggle"><?php _e( 'Menu', 'twentysixteen' ); ?></button>
 
 					<div id="site-header-menu" class="site-header-menu">
-						<?php if ( has_nav_menu( 'primary' ) ) : ?>
+						<?php if ( has_nav_menu( 'top_menu' ) ) : ?>
 							<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'twentysixteen' ); ?>">
 								<?php
 									wp_nav_menu( array(
-										'theme_location' => 'primary',
-										'menu_class'     => 'primary-menu',
+										'theme_location' => 'top_menu',
+										'menu_class'     => 'top_menu',
 									 ) );
 								?>
 							</nav><!-- .main-navigation -->
