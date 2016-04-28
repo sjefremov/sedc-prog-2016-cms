@@ -2,6 +2,8 @@
 <?php //include('header.php') same as get_header(); ?>
 <?php //require('header.php') same as get_header(); ?>
 
+
+<?php get_sidebar('jefremov'); ?>
 <?php while (have_posts()) : the_post(); ?>
 
     <div id="<?php the_ID(); ?>">
@@ -26,5 +28,5 @@
         <?php the_author(); ?>
     </a>
 <?php endwhile; ?>
-<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

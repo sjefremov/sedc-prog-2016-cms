@@ -173,6 +173,16 @@ function twentysixteen_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 
+	register_sidebar( array(
+		'name'          => 'Jefremov side',
+		'id'            => 'sidebar-jefremov',
+		'description'   => __( 'Add widgets here to appear in your sidebar.', 'twentysixteen' ),
+		'before_widget' => '<div id="%1$s" class="sidebar-top widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
 
 }
 add_action( 'widgets_init', 'twentysixteen_widgets_init' );
@@ -245,6 +255,11 @@ function twentysixteen_scripts() {
 	// Theme stylesheet.
 	wp_enqueue_style( 'twentysixteen-style', get_stylesheet_uri() );
 
+
+//get_stylesheet_uri() === (get_template_directory_uri() . '/new-style.css')
+	// Theme stylesheet.
+	wp_enqueue_style( 'new-style', get_template_directory_uri() . '/css/new-style.css' );
+
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'twentysixteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentysixteen-style' ), '20160412' );
 	wp_style_add_data( 'twentysixteen-ie', 'conditional', 'lt IE 10' );
@@ -262,6 +277,10 @@ function twentysixteen_scripts() {
 	wp_script_add_data( 'twentysixteen-html5', 'conditional', 'lt IE 9' );
 
 	wp_enqueue_script( 'twentysixteen-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160412', true );
+
+	wp_enqueue_script ('app.js', get_template_directory_uri() . '/js/app.js', array('jquery'), '0.0.1', true );
+
+	wp_enqueue_script ('bootstrap.js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array(), '0.0.1', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -467,3 +486,19 @@ function Mebel() {
 
 }
 add_action( 'init', 'Mebel', 0 );
+
+
+
+function trippleTitle($atts) {
+
+	$atts = shortcode_atts( array(
+		'text' => 'no foo',
+		'size' => ''
+	), $atts, 'bartag' );
+
+	$title = $atts['text'];
+
+	return '<div class="AAA" style="font-size:' . $atts['size'] . 'px">' . $title . '</div>';
+}
+
+add_shortcode('myTitle', trippleTitle);

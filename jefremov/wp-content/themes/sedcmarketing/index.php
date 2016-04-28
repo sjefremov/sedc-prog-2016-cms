@@ -19,7 +19,17 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php if ( have_posts() ) : ?>
+		<?php
+					// WP_Query arguments
+				$args = array (
+					'p'          => '10'
+				);
+
+				// The Query
+				$query1 = new WP_Query( $args );
+		?>
+
+		<?php if ( $query1->have_posts() ) : ?>
 
 			<?php if ( is_home() && ! is_front_page() ) : ?>
 				<header>
@@ -29,7 +39,7 @@ get_header(); ?>
 
 			<?php
 			// Start the loop.
-			while ( have_posts() ) : the_post();
+			while (  $query1->have_posts() ) :  $query1->the_post();
 
 				/*
 				 * Include the Post-Format-specific template for the content.
